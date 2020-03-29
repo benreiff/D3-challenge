@@ -79,24 +79,44 @@ d3.csv("data.csv").then(function (censusData) {
         .attr("font-size", "10px")
         .attr("text-anchor", "middle")
 
-    // initialize tooltip
-    var toolTip = d3.tip()
-        .attr("class", "tooltip")
-        .offset([0, 0])
-        .html(function (d) {
-            return (`${d.state}<hr>% Lacking Healthcare: ${d.healthcare}<hr>% in Poverty: ${d.poverty}`);
-        });
+    
+    // Step 1: Append a div to the body to create tooltips, assign it a class
+    // =======================================================
+    var toolTip = d3.select("body").append("div")
+        .attr("class", "tooltip");
 
-    // create the tooltip
-    chartGroup.call(toolTip);
-
-    // create event listeners displaying and hiding tooltip
-    circlesGroup.on("click", function (data) {
-        toolTip.show(data, this);
+    // Step 2: Add an onmouseover event to display a tooltip
+    // ========================================================
+    circlesGroup.on("mouseover", function (d, i) {
+        toolTip.style("display", "block");
+        toolTip.html(`${d.state}<hr>% Lacking Healthcare: ${d.healthcare}<hr>% in Poverty: ${d.poverty}`)
+            .style("left", d3.event.pageX + "px")
+            .style("top", d3.event.pageY + "px");
     })
-        // event handler for onmouseevent
-        .on("mouseout", function (data, index) {
-            toolTip.hide(data);
+        // Step 3: Add an onmouseout event to make the tooltip invisible
+        .on("mouseout", function () {
+            toolTip.style("display", "none");
         });
+    
+    
+    // // initialize tooltip
+    // var toolTip = d3.tip()
+    //     .attr("id", "tooltip")
+    //     .offset([0, 0])
+    //     .html(function (d) {
+    //         return (`${d.state}<hr>% Lacking Healthcare: ${d.healthcare}<hr>% in Poverty: ${d.poverty}`);
+    //     });
+
+    // // create the tooltip
+    // chartGroup.call(toolTip);
+
+    // // create event listeners displaying and hiding tooltip
+    // circlesGroup.on("click", function (data) {
+    //     toolTip.show(data, this);
+    // })
+    //     // event handler for onmouseevent
+    //     .on("mouseout", function (data, index) {
+    //         toolTip.hide(data);
+    //     });
 
 });
