@@ -82,8 +82,23 @@ d3.csv("data.csv").then(function (censusData) {
     
     // Step 1: Append a div to the body to create tooltips, assign it a class
     // =======================================================
-    var toolTip = d3.select("body").append("div")
-        .attr("class", "tooltip");
+    // var toolTip = d3.select("body").append("div")
+    //     .attr("class", "tooltip");
+
+    var toolTip = d3.tip()
+        .attr("class", "tooltip")
+        .offset([80, -60])
+        .html(function(d) {
+            return (`${d. }<br>Poverty: ${d.poverty}<br>Health Care: ${d.healthcare}`)
+        });
+
+    chartGroup.call(toolTip);
+
+
+
+
+
+
 
     // Step 2: Add an onmouseover event to display a tooltip
     // ========================================================
