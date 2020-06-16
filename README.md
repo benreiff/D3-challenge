@@ -1,9 +1,9 @@
 # <p align="center">D3 Charting Project</p>
 
-This is a data-driven chart using tools other than Python and Jupyter Notebook.
+This project creates a data-driven chart using tools other than Python and Jupyter Notebook.
 I created a simple scatter plot using the Javascript library D3. 
 
-Using data from the United States Census Bureau, this chart looks at all 50 states and attempts to show how the percentage of individuals with healthcare is affected by the percentage of those below the povery line.
+Using data from the **[United States Census Bureau](https://data.census.gov/cedsci/)**, this chart plots all 50 states and attempts to show the relationship between the percentage of individuals with healthcare against the percentage of those below the povery line.
 
 The data is from 
 
